@@ -1,70 +1,133 @@
-# Getting Started with Create React App
+# 🌐 LMBIS – Line Ministry Budget Information System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**LMBIS** is a modern web-based application built using **React** to streamline and digitize the budgeting process between government ministries and their associated offices. It helps users manage fund requests, allocate budgets, track project-wise expenditures, and ensure transparent fund usage.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 📦 Tech Stack
 
-### `npm start`
+- **Frontend:** React (Create React App)
+- **Styling:** CSS3, custom themes
+- **Version Control:** Git + GitHub
+- **Collaboration:** GitHub Desktop, VS Code
+- **Hosting (Planned):** Netlify or Vercel
+- **Backend (Future):** Node.js + Express
+- **Database (Future):** MySQL or Firebase
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🚀 Getting Started
 
-### `npm test`
+### 🔧 1. Clone the repository
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+git clone https://github.com/Nischal-3202/lmbis.git
+cd lmbis
+```
 
-### `npm run build`
+### 📦 2. Install dependencies (only required on first setup)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### ▶️ 3. Run the React app
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm start
+```
 
-### `npm run eject`
+The app will start in your browser at:  
+[http://localhost:3000](http://localhost:3000)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🗂️ Project Structure
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
+lmbis/
+├── public/             # Static assets
+├── src/
+│   ├── components/     # Reusable components (e.g., Navbar, Sidebar)
+│   ├── pages/          # Main page views (e.g., Dashboard, Login)
+│   ├── utils/          # Helper functions (e.g., validators, formatters)
+│   ├── App.js          # Root React component
+│   └── index.js        # App entry point
+├── .gitignore
+├── package.json
+└── README.md
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## 👥 User Roles (in progress)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 👤 Office User:
+- Request budget under project titles
+- Track fund approvals
+- Log and view expenditures
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 🧑‍💼 Admin User (Ministry):
+- View and approve/reject fund requests
+- Allocate budgets to offices
+- Track ministry-level expenditures
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 💻 Development Workflow
 
-### Analyzing the Bundle Size
+### 🔁 Common Git Commands
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+# Pull latest changes
+git pull origin main
 
-### Making a Progressive Web App
+# Stage & commit your work
+git add .
+git commit -m "feat: added new page"
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+# Push your work to GitHub
+git push origin main
+```
 
-### Advanced Configuration
+> ⚠️ Always pull before pushing to avoid merge conflicts!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+## 🙌 Collaboration Tips
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- Use **GitHub Desktop** to simplify commits and syncing
+- Always write meaningful commit messages
+- Coordinate with teammates before working on the same component
+- Follow consistent folder/file naming conventions
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## ✨ Features (Planned & In Progress)
+
+- [x] React frontend setup
+- [ ] Admin/Office role login
+- [ ] Budget request forms
+- [ ] Fund approval dashboard
+- [ ] Project-wise expenditure tracker
+- [ ] Ministry vs Office views
+- [ ] Exportable reports (PDF/CSV)
+
+---
+
+## 🧑‍💻 Contributors
+
+- Nischal Poudel – Lead Developer  
+- [Add teammate names here]
+
+---
+
+## 📄 License
+
+This project is for educational and internal use only. License to be added upon official deployment.
+
+---
+
+## 📬 Contact
+
+If you have questions or want to contribute, reach out to `@Nischal-3202` on GitHub or email [nischalpoudel2004@gmail.com].
