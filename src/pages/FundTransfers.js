@@ -35,12 +35,10 @@ const FundTransfers = () => {
     <div className="fund-transfers-page">
       <AdminSidebar />
       <div className="fund-transfers-content">
+        <button className="back-dashboard-button" onClick={() => window.location.href = '/admin'}>
+          ⬅ Back to Dashboard
+        </button>
         <h2 className="fund-transfers-title">Fund Transfers</h2>
-        <div className="back-button-container">
-          <button className="back-dashboard-button" onClick={() => window.location.href = '/admin'}>
-            ⬅ Back to Dashboard
-          </button>
-        </div>
         <div className="transfer-list">
           {mockTransfers.map((transfer) => (
             <TransferCard key={transfer.id} transfer={transfer} />

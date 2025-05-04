@@ -7,7 +7,6 @@ import '../styles/OfficeList.css';
 const OfficeList = () => {
   const location = useLocation();
   const ministryName = location.state?.ministryName || 'Selected Ministry';
-  console.log('Received router state:', location.state);
 
   const offices = [
     {
@@ -41,15 +40,13 @@ const OfficeList = () => {
     <div className="office-list-page">
       <AdminSidebar />
       <div className="office-list-content">
+        <button
+          className="back-dashboard-button"
+          onClick={() => window.history.back()}
+        >
+          ⬅ Back to Ministries
+        </button>
         <h2 className="office-list-title">Offices under {ministryName}</h2>
-        <div className="back-button-container">
-          <button
-            className="back-dashboard-button"
-            onClick={() => window.history.back()}
-          >
-            ⬅ Back to Ministries
-          </button>
-        </div>
         <div className="office-cards-scroll-container">
           {offices.map((office, index) => (
             <OfficeCard key={index} office={office} />

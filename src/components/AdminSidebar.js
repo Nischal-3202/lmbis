@@ -33,7 +33,9 @@ const AdminSidebar = () => {
           </li>
         ))}
       </ul>
-      <button className="logout-button">LOGOUT</button>
+      <button className="logout-button" onClick={() => window.location.href = '/'}>
+        LOGOUT
+      </button>
     </aside>
   );
 };

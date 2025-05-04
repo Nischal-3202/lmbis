@@ -10,6 +10,7 @@ import OfficeManagement from '../pages/OfficeManagement';
 import OfficeList from '../pages/OfficeList';
 import AddOffice from '../pages/AddOffice';
 import ReportsPage from '../pages/ReportsPage';
+import ManageMinistries from '../pages/ManageMinistries';
 
 const AppRoutes = () => {
   return (
@@ -24,6 +25,7 @@ const AppRoutes = () => {
       <Route path="/offices/list" element={<OfficeList />} />
       <Route path="/offices/add" element={<AddOffice />} />
       <Route path="/reports" element={<ReportsPage />} />
+      <Route path="/manage-ministries" element={<ManageMinistries />} />
     </Routes>
   );
 };

@@ -14,6 +14,12 @@ const ReportsPage = () => {
     <div className="reports-page">
       <AdminSidebar />
       <div className="reports-content">
+        <button
+          className="back-dashboard-button"
+          onClick={() => window.location.href = '/admin'}
+        >
+          ⬅ Back to Dashboard
+        </button>
         <h2 className="reports-title">Reports</h2>
         <div className="report-cards-container">
           <ReportCard

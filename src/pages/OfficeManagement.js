@@ -48,12 +48,13 @@ const OfficeManagement = () => {
     <div className="office-management-page">
       <AdminSidebar />
       <div className="office-management-content">
+        <button
+          className="back-dashboard-button"
+          onClick={() => window.location.href = '/admin'}
+        >
+          ⬅ Back to Dashboard
+        </button>
         <h2 className="office-management-title">Office Management</h2>
-        <div className="back-button-container">
-          <button className="back-dashboard-button" onClick={() => window.location.href = '/admin'}>
-            ⬅ Back to Dashboard
-          </button>
-        </div>
         <div className="ministry-cards-scroll-container">
           {ministries.map((ministry, index) => (
             <MinistryCard

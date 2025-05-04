@@ -21,12 +21,10 @@ const BudgetManagement = () => {
     <div className="budget-management-page">
       <AdminSidebar />
       <div className="budget-management-content">
+        <button className="back-dashboard-button" onClick={() => window.location.href = '/admin'}>
+          ⬅ Back to Dashboard
+        </button>
         <h2 className="budget-management-title">Budget Management</h2>
-        <div className="back-button-container">
-          <button className="back-dashboard-button" onClick={() => window.location.href = '/admin'}>
-            ⬅ Back to Dashboard
-          </button>
-        </div>
         <div className="budget-grid">
           {ministries.map((name, index) => (
             <BudgetCard key={index} ministryName={name} onApprove={handleApprove} />

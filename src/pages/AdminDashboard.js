@@ -20,7 +20,7 @@ const AdminDashboard = () => {
         <section className="admin-tiles">
           <DashboardTile title="Fund Transfers" image={fundTransfersIcon} buttonText="View Transfers" link="/fund-transfers" />
           <DashboardTile title="Budget Management" image={budgetIcon} buttonText="Manage Budget" link="/budget" />
-          <DashboardTile title="Manage Ministries" image={ministriesIcon} buttonText="Edit Ministries" />
+          <DashboardTile title="Manage Ministries" image={ministriesIcon} buttonText="Edit Ministries" link="/manage-ministries" />
           <DashboardTile title="Manage Offices" image={officesIcon} buttonText="View Offices" link="/offices" />
           <DashboardTile title="Pending Requests" image={pendingIcon} buttonText="Review Now" link="/pending-requests"/>
           <DashboardTile title="Reports Page" image={reportsIcon} buttonText="Generate Reports" link="/reports" />

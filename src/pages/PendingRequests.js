@@ -54,13 +54,16 @@ const PendingRequests = () => {
   return (
     <div className="pending-requests-page">
       <AdminSidebar />
-      <div className="pending-requests-container">
-        <div className="back-button-container">
-          <button className="back-dashboard-button" onClick={() => window.location.href = '/admin'}>
+      <div className="pending-requests-container" style={{ marginLeft: '250px' }}>
+        <div className="top-bar">
+          <button
+            className="back-dashboard-button"
+            onClick={() => window.location.href = '/admin'}
+          >
             ⬅ Back to Dashboard
           </button>
+          <h2 className="pending-requests-title">Pending Requests</h2>
         </div>
-        <h2 className="pending-requests-title">Pending Requests</h2>
         <div className="requests-scroll-wrapper">
           {requests.map((req) => (
             <RequestCard
@@ -71,7 +74,9 @@ const PendingRequests = () => {
             />
           ))}
         </div>
-        <button className="approve-all-button" onClick={handleApproveAll}>Approve All</button>
+        <button className="approve-all-button" onClick={handleApproveAll}>
+          Approve All
+        </button>
       </div>
     </div>
   );
