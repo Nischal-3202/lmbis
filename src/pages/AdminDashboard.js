@@ -23,7 +23,7 @@ const AdminDashboard = () => {
           <DashboardTile title="Manage Ministries" image={ministriesIcon} buttonText="Edit Ministries" />
           <DashboardTile title="Manage Offices" image={officesIcon} buttonText="View Offices" link="/offices" />
           <DashboardTile title="Pending Requests" image={pendingIcon} buttonText="Review Now" link="/pending-requests"/>
-          <DashboardTile title="Reports Page" image={reportsIcon} buttonText="Generate Reports" />
+          <DashboardTile title="Reports Page" image={reportsIcon} buttonText="Generate Reports" link="/reports" />
         </section>
       </main>
     </div>

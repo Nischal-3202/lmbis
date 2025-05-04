@@ -9,6 +9,7 @@ import BudgetManagement from '../pages/BudgetManagement';
 import OfficeManagement from '../pages/OfficeManagement';
 import OfficeList from '../pages/OfficeList';
 import AddOffice from '../pages/AddOffice';
+import ReportsPage from '../pages/ReportsPage';
 
 const AppRoutes = () => {
   return (
@@ -22,6 +23,7 @@ const AppRoutes = () => {
       <Route path="/offices" element={<OfficeManagement />} />
       <Route path="/offices/list" element={<OfficeList />} />
       <Route path="/offices/add" element={<AddOffice />} />
+      <Route path="/reports" element={<ReportsPage />} />
     </Routes>
   );
 };
