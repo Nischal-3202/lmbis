@@ -3,7 +3,7 @@
 import React from 'react';
 import OfficeSidebar from '../components/OfficeSidebar';
 import DashboardTile from '../components/DashboardTile';
-import '../styles/AdminDashboard.css'; // Reusing admin dashboard styles
+import '../styles/OfficeDashboard.css';
 import requestIcon from '../assets/pending.png';
 import transferIcon from '../assets/fund-transfers.png';
 import budgetIcon from '../assets/budget.png';

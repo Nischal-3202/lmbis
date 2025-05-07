@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/AdminSidebar.css';
+import '../styles/OfficeSidebar.css';
 
 const OfficeSidebar = () => {
   const navigate = useNavigate();

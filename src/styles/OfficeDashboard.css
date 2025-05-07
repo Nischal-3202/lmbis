@@ -1,0 +1,29 @@
+
+
+
+.dashboard-container {
+  display: flex;
+  background-color: #f4f9ff;
+  min-height: 100vh;
+}
+
+.dashboard-content {
+  flex: 1;
+  padding: 50px 60px;
+}
+
+.dashboard-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #1B365D;
+  margin-bottom: 40px;
+  border-bottom: 3px solid #1B365D;
+  display: inline-block;
+  padding-bottom: 8px;
+}
+
+.dashboard-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
