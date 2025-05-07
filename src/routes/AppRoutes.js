@@ -11,6 +11,12 @@ import OfficeList from '../pages/OfficeList';
 import AddOffice from '../pages/AddOffice';
 import ReportsPage from '../pages/ReportsPage';
 import ManageMinistries from '../pages/ManageMinistries';
+import RequestFunds from '../pages/RequestFunds';
+import OfficeFundTransfers from '../pages/OfficeFundTransfers';
+import OfficeBudgetOverview from '../pages/OfficeBudgetOverview';
+import ExpenditureTracker from '../pages/ExpenditureTracker';
+import OfficeReports from '../pages/OfficeReports';
+import OfficeInfo from '../pages/OfficeInfo';
 
 const AppRoutes = () => {
   return (
@@ -26,6 +32,12 @@ const AppRoutes = () => {
       <Route path="/offices/add" element={<AddOffice />} />
       <Route path="/reports" element={<ReportsPage />} />
       <Route path="/manage-ministries" element={<ManageMinistries />} />
+      <Route path="/request-funds" element={<RequestFunds />} />
+      <Route path="/fund-transfers-office" element={<OfficeFundTransfers />} />
+      <Route path="/budget-overview" element={<OfficeBudgetOverview />} />
+      <Route path="/expenditure-tracker" element={<ExpenditureTracker />} />
+      <Route path="/reports-office" element={<OfficeReports />} />
+      <Route path="/office-info" element={<OfficeInfo />} />
     </Routes>
   );
 };
