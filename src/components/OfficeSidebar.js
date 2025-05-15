@@ -1,25 +1,42 @@
-
-
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import '../styles/OfficeSidebar.css';
+import logo from '../assets/logo.png';
 
 const OfficeSidebar = () => {
-  const navigate = useNavigate();
+  const location = useLocation();
+
+  const menuItems = [
+    { name: 'Request Funds', path: '/office/funds' },
+    { name: 'Fund Transfers', path: '/office/transfers' },
+    { name: 'Budget Overview', path: '/office/budget' },
+    { name: 'Reports Page', path: '/office/reports' },
+    { name: 'Office Info', path: '/office/info' },
+    { name: 'Expenditure', path: '/office/expenditure' },
+  ];
 
   return (
-    <div className="sidebar">
-      <h2 className="sidebar-title">Office</h2>
-      <ul className="sidebar-links">
-        <li onClick={() => navigate('/request-funds')}>Request Funds</li>
-        <li onClick={() => navigate('/fund-transfers-office')}>Fund Transfers</li>
-        <li onClick={() => navigate('/budget-overview')}>Budget Overview</li>
-        <li onClick={() => navigate('/expenditure-tracker')}>Track Expenditures</li>
-        <li onClick={() => navigate('/reports-office')}>Reports</li>
-        <li onClick={() => navigate('/office-info')}>Office Information</li>
+    <aside className="sidebar">
+      <div className="sidebar-logo">
+        <img src={logo} alt="Office Logo" />
+      </div>
+      <div className="sidebar-header">QUICK LINKS</div>
+      <ul className="sidebar-menu">
+        {menuItems.map((item, index) => (
+          <li key={index}>
+            <NavLink
+              to={item.path}
+              className={`sidebar-item ${location.pathname === item.path ? 'active' : ''}`}
+            >
+              {item.name}
+            </NavLink>
+          </li>
+        ))}
       </ul>
-      <button className="logout-button" onClick={() => navigate('/')}>LOGOUT</button>
-    </div>
+      <button className="logout-button" onClick={() => window.location.href = '/'}>
+        LOGOUT
+      </button>
+    </aside>
   );
 };
 

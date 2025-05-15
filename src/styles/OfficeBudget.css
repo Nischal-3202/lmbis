@@ -1,9 +1,8 @@
-.office-dashboard {
-    display: flex;
-}
+
+
 
 .office-main {
-    margin-left: 240px; /* matches sidebar width */
+    margin-left: 240px;
     padding: 40px;
     width: calc(100% - 240px);
     background: linear-gradient(to bottom right, #e0f2ff, #f5fbff);
@@ -11,18 +10,15 @@
     box-sizing: border-box;
 }
 
-.office-header {
+.office-header h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #1B365D;
     margin-bottom: 30px;
 }
 
-.office-header h2 {
-    font-size: 24px;
-    font-weight: bold;
-    color: #1B365D;
-}
-
-.office-tiles {
+.office-budget-tiles {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 80px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
 }
