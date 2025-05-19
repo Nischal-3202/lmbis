@@ -10,7 +10,9 @@ const OfficeBudgetCard = ({ title, budget }) => {
       <div className="budget-amount">
         Budget: {budget ? `$${budget}` : 'N/A'}
       </div>
-      <button className="track-button">Track Spending</button>
+      <button className="track-button" onClick={() => window.location.href = '/office/expenditure'}>
+        Track Spending
+      </button>
     </div>
   );
 };

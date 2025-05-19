@@ -22,8 +22,8 @@ const OfficeDashboard = () => {
           <DashboardTile title="Fund Transfers" image={TransferIcon} buttonText="Transfer" link="/office/transfers" />
           <DashboardTile title="Budget Overview" image={BudgetIcon} buttonText="View Budget" link="/office/budget" />
           <DashboardTile title="Reports" image={ReportsIcon} buttonText="Open Reports" link="/office/reports" />
-          <DashboardTile title="Office Info" image={OfficeInfoIcon} buttonText="Details"  />
-          <DashboardTile title="Expenditure" image={ExpenditureIcon} buttonText="Check Expenditure" />
+          <DashboardTile title="Office Info" image={OfficeInfoIcon} buttonText="Details" link="/office/info" />
+          <DashboardTile title="Expenditure" image={ExpenditureIcon} buttonText="Check Expenditure" link="/office/expenditure" />
         </section>
       </main>
     </div>

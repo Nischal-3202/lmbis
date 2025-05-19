@@ -15,6 +15,12 @@ import OfficeFunds from '../pages/OfficeFunds';
 import OfficeTransfers from '../pages/OfficeTransfers';
 import OfficeBudget from '../pages/OfficeBudget';
 import OfficeReports from '../pages/OfficeReports';
+import OfficeInfo from '../pages/OfficeInfo';
+import EmployeeInfo from '../pages/EmployeeInfo';
+import EditEmployee from '../pages/EditEmployee';
+import ExpenditureTracker from '../pages/ExpenditureTracker';
+import EditProject from '../pages/EditProject';
+import AddProjects from '../pages/AddProjects';
 
 const AppRoutes = () => {
   return (
@@ -26,6 +32,12 @@ const AppRoutes = () => {
       <Route path="/office/transfers" element={<OfficeTransfers />} />
       <Route path="/office/budget" element={<OfficeBudget />} />
       <Route path="/office/reports" element={<OfficeReports />} />
+      <Route path="/office/info" element={<OfficeInfo />} />
+      <Route path="/office/employee-info" element={<EmployeeInfo />} />
+      <Route path="/office/employee-info/edit/:id" element={<EditEmployee />} />
+      <Route path="/office/expenditure" element={<ExpenditureTracker />} />
+      <Route path="/office/expenditure/edit/:id" element={<EditProject />} />
+      <Route path="/office/expenditure/add" element={<AddProjects />} />
       <Route path="/pending-requests" element={<PendingRequests />} />
       <Route path="/fund-transfers" element={<FundTransfers />} />
       <Route path="/budget" element={<BudgetManagement />} />
