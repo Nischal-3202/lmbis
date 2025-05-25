@@ -10,25 +10,28 @@ const Login = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const users = [
-    { username: 'admin', password: 'admin123', role: 'admin' },
-    { username: 'office_koshi', password: 'koshi123', role: 'office' },
-    { username: 'office_gandaki', password: 'gandaki123', role: 'office' }
-  ];
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = users.find(
-      (u) => u.username === username && u.password === password
-    );
-    if (user) {
-      if (user.role === 'admin') {
-        navigate('/admin');
+    try {
+      const response = await fetch('http://localhost:2000/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        if (data.role === 'admin') {
+          navigate('/admin');
+        } else {
+          navigate('/office');
+        }
       } else {
-        navigate('/office');
+        setError(data.error || 'Login failed');
       }
-    } else {
-      setError('Invalid username or password');
+    } catch (err) {
+      setError('Server error. Please try again later.');
     }
   };
 

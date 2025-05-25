@@ -4,32 +4,25 @@ import AdminSidebar from '../components/AdminSidebar';
 import TransferCard from '../components/TransferCard';
 
 const FundTransfers = () => {
-  const mockTransfers = [
-    {
-      id: 'FT-001',
-      officeName: 'Education Office',
-      amount: 250000,
-      date: '2025-04-20',
-      heading: 'Textbook Purchase'
-    },
-    {
-      id: 'FT-002',
-      officeName: 'Health Office',
-      amount: 480000,
-      date: '2025-04-22',
-      heading: 'Vaccine Supply'
-    },
-    {
-      id: 'FT-003',
-      officeName: 'Transport Office',
-      amount: 150000,
-      date: '2025-04-25',
-      heading: 'Road Repair'
-    }
-  ];
+  const [transfers, setTransfers] = React.useState([]);
 
-  const totalTransfers = mockTransfers.length;
-  const totalAmount = mockTransfers.reduce((acc, curr) => acc + curr.amount, 0);
+  React.useEffect(() => {
+    const fetchApprovedTransfers = async () => {
+      try {
+        const response = await fetch('http://localhost:2000/funds');
+        const data = await response.json();
+        const approved = data.filter(item => item.status === 'approved');
+        setTransfers(approved);
+      } catch (error) {
+        console.error('Error fetching fund transfers:', error);
+      }
+    };
+
+    fetchApprovedTransfers();
+  }, []);
+
+  const totalTransfers = transfers.length;
+  const totalAmount = transfers.reduce((acc, curr) => acc + curr.amount, 0);
 
   return (
     <div className="fund-transfers-page">
@@ -40,7 +33,7 @@ const FundTransfers = () => {
         </button>
         <h2 className="fund-transfers-title">Fund Transfers</h2>
         <div className="transfer-list">
-          {mockTransfers.map((transfer) => (
+          {transfers.map((transfer) => (
             <TransferCard key={transfer.id} transfer={transfer} />
           ))}
         </div>

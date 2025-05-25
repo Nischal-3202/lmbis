@@ -1,54 +1,62 @@
 import AdminSidebar from '../components/AdminSidebar';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/PendingRequests.css';
 import RequestCard from '../components/RequestCard';
 
 const PendingRequests = () => {
-  const [requests, setRequests] = useState([
-    {
-      id: 1,
-      title: 'Infrastructure Upgrade',
-      office: 'Office Bagmati',
-      amount: 'NPR 12,00,000',
-      purpose: 'Renovation and maintenance',
-      fiscalYear: '2080/81',
-    },
-    {
-      id: 2,
-      title: 'Education Grant',
-      office: 'Office Gandaki',
-      amount: 'NPR 8,50,000',
-      purpose: 'School material distribution',
-      fiscalYear: '2080/81',
-    },
-    {
-      id: 3,
-      title: 'Healthcare Equipment',
-      office: 'Office Lumbini',
-      amount: 'NPR 15,00,000',
-      purpose: 'Purchase of X-ray machines',
-      fiscalYear: '2080/81',
-    },
-    {
-      id: 4,
-      title: 'Flood Relief',
-      office: 'Office Koshi',
-      amount: 'NPR 10,00,000',
-      purpose: 'Emergency response kits',
-      fiscalYear: '2080/81',
-    },
-  ]);
+  const [requests, setRequests] = useState([]);
 
-  const handleApprove = (id) => {
-    setRequests((prev) => prev.filter((req) => req.id !== id));
+  useEffect(() => {
+    const fetchRequests = async () => {
+      try {
+        const response = await fetch('http://localhost:2000/funds');
+        const data = await response.json();
+        // setRequests(data);
+        const pendingOnly = data.filter(req => req.status === 'pending');
+        setRequests(pendingOnly);
+      } catch (error) {
+        console.error('Error fetching fund requests:', error);
+      }
+    };
+
+    fetchRequests();
+  }, []);
+
+  const handleApprove = async (id) => {
+    try {
+      await fetch(`http://localhost:2000/funds/${id}/approve`, {
+        method: 'PUT'
+      });
+      setRequests((prev) => prev.filter((req) => req.id !== id));
+    } catch (error) {
+      console.error('Error approving request:', error);
+    }
   };
 
-  const handleReject = (id) => {
-    setRequests((prev) => prev.filter((req) => req.id !== id));
+  const handleReject = async (id) => {
+    try {
+      await fetch(`http://localhost:2000/funds/${id}/reject`, {
+        method: 'PUT'
+      });
+      setRequests((prev) => prev.filter((req) => req.id !== id));
+    } catch (error) {
+      console.error('Error rejecting request:', error);
+    }
   };
 
-  const handleApproveAll = () => {
-    setRequests([]);
+  const handleApproveAll = async () => {
+    try {
+      await Promise.all(
+        requests.map(req =>
+          fetch(`http://localhost:2000/funds/${req.id}/approve`, {
+            method: 'PUT'
+          })
+        )
+      );
+      setRequests([]);
+    } catch (error) {
+      console.error('Error approving all requests:', error);
+    }
   };
 
   return (
