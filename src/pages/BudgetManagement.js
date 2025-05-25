@@ -1,20 +1,44 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import AdminSidebar from '../components/AdminSidebar';
 import BudgetCard from '../components/BudgetCard';
 import '../styles/BudgetManagement.css';
 
-const ministries = [
-  'Ministry of Health',
-  'Ministry of Education',
-  'Ministry of Finance',
-  'Ministry of Transport',
-  'Ministry of Agriculture',
-  'Ministry of Environment'
-];
 
 const BudgetManagement = () => {
-  const handleApprove = (ministryName, amount) => {
-    alert(`Budget of ₹${amount} approved for ${ministryName}`);
+  const [ministries, setMinistries] = useState([]);
+
+  useEffect(() => {
+    const fetchMinistries = async () => {
+      try {
+        const response = await fetch('http://localhost:2000/ministries');
+        const data = await response.json();
+        setMinistries(data);
+      } catch (error) {
+        console.error('Failed to fetch ministries:', error);
+      }
+    };
+    fetchMinistries();
+  }, []);
+
+  const handleApprove = async (ministryName, amount) => {
+    try {
+      const fiscalYear = "2080/81";
+      const response = await fetch('http://localhost:2000/budgets', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ministryName, fiscalYear, allocated: amount }),
+      });
+      if (response.ok) {
+        const result = await response.json();
+        alert(`Budget for ${ministryName} submitted successfully`);
+      } else {
+        alert('Failed to submit budget');
+      }
+    } catch (error) {
+      console.error('Error submitting budget:', error);
+    }
   };
 
   return (
@@ -26,8 +50,12 @@ const BudgetManagement = () => {
         </button>
         <h2 className="budget-management-title">Budget Management</h2>
         <div className="budget-grid">
-          {ministries.map((name, index) => (
-            <BudgetCard key={index} ministryName={name} onApprove={handleApprove} />
+          {ministries.map((ministry, index) => (
+            <BudgetCard
+              key={index}
+              ministryName={ministry.ministryName ? ministry.ministryName : ministry}
+              onApprove={handleApprove}
+            />
           ))}
         </div>
       </div>

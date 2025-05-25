@@ -17,10 +17,27 @@ function ManageMinistries() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Submitted Ministry:', formData);
-    // Integration with backend would happen here
+    try {
+      const response = await fetch('http://localhost:2000/ministries', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log('Ministry added:', result);
+      } else {
+        console.error('Failed to add ministry');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+
     setFormData({
       ministryName: '',
       description: '',
