@@ -70,11 +70,16 @@ button.add-button:hover {
   background-color: #2D4E6A;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 10px 16px;
   border-radius: 8px;
   font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  white-space: nowrap;
+  line-height: 1.2;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  width: auto;
 }
 
 .back-dashboard-button:hover {
@@ -82,23 +87,18 @@ button.add-button:hover {
 }
 
 .cancel-office-button {
-  margin-top: 15px;
-  background-color: transparent;
-  color: #2D4E6A;
-  padding: 10px 20px;
-  border: 2px solid #2D4E6A;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  -ms-border-radius: 8px;
-  -o-border-radius: 8px;
-}
-
-.cancel-office-button:hover {
+  margin-top: 25px;
   background-color: #2D4E6A;
   color: white;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+ 
+
+.cancel-office-button:hover {
+  background-color: #1b365d;
 }
