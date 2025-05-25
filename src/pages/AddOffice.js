@@ -1,102 +1,116 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AdminSidebar from '../components/AdminSidebar';
-import '../styles/AddOffice.css';
-
-const ministries = ['Ministry of Health', 'Ministry of Education', 'Ministry of Finance']; // Placeholder ministries
+import '../styles/ManageMinistries.css'; // Reuse existing ministry styles
 
 function AddOffice() {
-  const [officeName, setOfficeName] = useState('');
-  const [location, setLocation] = useState('');
-  const [selectedMinistry, setSelectedMinistry] = useState('');
+  const [formData, setFormData] = useState({
+    officeName: '',
+    location: '',
+    selectedMinistry: '',
+  });
+
+  const [ministries, setMinistries] = useState([]);
+
+  // Fetch ministries from backend
+  useEffect(() => {
+    const fetchMinistries = async () => {
+      try {
+        const response = await fetch('http://localhost:2000/ministries');
+        const data = await response.json();
+        setMinistries(data);
+      } catch (error) {
+        console.error('Error fetching ministries:', error);
+      }
+    };
+
+    fetchMinistries();
+  }, []);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log('New Office Details:', formData);
     try {
       const response = await fetch('http://localhost:2000/offices', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          officeName,
-          location,
-          ministryName: selectedMinistry
-        }),
+        body: JSON.stringify(formData)
       });
 
       if (response.ok) {
         const result = await response.json();
-        console.log('Office added successfully:', result);
-        alert('Office added successfully!');
-        setOfficeName('');
-        setLocation('');
-        setSelectedMinistry('');
+        console.log('Office added:', result);
+        setFormData({ officeName: '', location: '', selectedMinistry: '' });
       } else {
-        alert('Failed to add office. Please try again.');
+        console.error('Failed to add office');
       }
     } catch (error) {
-      console.error('Error adding office:', error);
-      alert('An error occurred while adding the office.');
+      console.error('Error submitting office:', error);
     }
   };
 
   return (
-    <div className="add-office-page">
+    <div className="manage-ministries-page">
       <AdminSidebar />
-      <div className="add-office-container">
-        <div className="back-button-container">
-          <button
-            className="back-dashboard-button"
-            onClick={() => window.location.href = '/offices'}
-          >
-            ⬅ Back to Ministries
-          </button>
+      <div className="manage-ministries-container">
+        <button
+          className="back-dashboard-button"
+          onClick={() => window.location.href = '/admin'}
+        >
+          ⬅ Back to Dashboard
+        </button>
+        <h2 className="manage-ministries-title">Manage Offices</h2>
+        <div className="add-ministry-box">
+          <h3 className="add-ministry-heading">Add office:</h3>
+          <form onSubmit={handleSubmit} className="ministry-form">
+            <label>
+              Office Name:
+              <input
+                type="text"
+                name="officeName"
+                value={formData.officeName}
+                onChange={handleChange}
+                required
+              />
+            </label>
+            <label>
+              Location:
+              <input
+                type="text"
+                name="location"
+                value={formData.location}
+                onChange={handleChange}
+                required
+              />
+            </label>
+            <label>
+              Select Ministry:
+              <select
+                name="selectedMinistry"
+                value={formData.selectedMinistry}
+                onChange={handleChange}
+                required
+              >
+                <option value="" disabled>Select a Ministry</option>
+                {ministries.map((ministry) => (
+                  <option key={ministry._id} value={ministry.ministryName}>
+                    {ministry.ministryName}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <button type="submit" className="submit-button">Add</button>
+          </form>
         </div>
-        <h2 className="add-office-title">Add Office:</h2>
-        <form className="add-office-form" onSubmit={handleSubmit}>
-          <label>
-            Office Name:
-            <input
-              type="text"
-              value={officeName}
-              onChange={(e) => setOfficeName(e.target.value)}
-              required
-            />
-          </label>
-          <label>
-            Location:
-            <input
-              type="text"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-              required
-            />
-          </label>
-          <label>
-            Select Ministry:
-            <select
-              value={selectedMinistry}
-              onChange={(e) => setSelectedMinistry(e.target.value)}
-              required
-            >
-              <option value="" disabled>Select a Ministry</option>
-              {ministries.map((ministry, index) => (
-                <option key={index} value={ministry}>
-                  {ministry}
-                </option>
-              ))}
-            </select>
-          </label>
-          <button type="submit" className="add-office-button">Add</button>
-          <button
-            type="button"
-            className="cancel-office-button"
-            onClick={() => window.location.href = '/admin'}
-          >
-            Cancel
-          </button>
-        </form>
       </div>
     </div>
   );
