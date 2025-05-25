@@ -2,14 +2,13 @@ import React from 'react';
 import '../styles/MinistryCard.css';
 
 const MinistryCard = ({ ministry, onViewOffices }) => {
-  const { name, description, officeCount, budget } = ministry;
+  const { name, description, budget } = ministry;
 
   return (
     <div className="ministry-card">
       <div className="ministry-details">
         <h3 className="ministry-name">{name}</h3>
         <p><strong>Description:</strong> {description}</p>
-        <p><strong>Total No. of Offices:</strong> {officeCount}</p>
         <p><strong>Budget Allocated:</strong> ₹{budget.toLocaleString()}</p>
       </div>
       <div className="ministry-buttons">
