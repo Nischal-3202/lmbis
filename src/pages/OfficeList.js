@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import AdminSidebar from '../components/AdminSidebar';
 import OfficeCard from '../components/OfficeCard';
@@ -8,33 +8,16 @@ const OfficeList = () => {
   const location = useLocation();
   const ministryName = location.state?.ministryName || 'Selected Ministry';
 
-  const offices = [
-    {
-      name: 'Central Health Office',
-      location: 'Kathmandu',
-      employees: 45
-    },
-    {
-      name: 'District Education Office',
-      location: 'Lalitpur',
-      employees: 32
-    },
-    {
-      name: 'Transport Department',
-      location: 'Pokhara',
-      employees: 21
-    },
-    {
-      name: 'Energy Research Center',
-      location: 'Butwal',
-      employees: 18
-    },
-    {
-      name: 'Agricultural Supply Depot',
-      location: 'Biratnagar',
-      employees: 27
+  const [offices, setOffices] = useState([]);
+
+  useEffect(() => {
+    if (ministryName) {
+      fetch(`http://localhost:2000/offices/${ministryName}`)
+        .then((res) => res.json())
+        .then((data) => setOffices(data))
+        .catch((err) => console.error('Error fetching offices:', err));
     }
-  ];
+  }, [ministryName]);
 
   return (
     <div className="office-list-page">

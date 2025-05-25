@@ -9,13 +9,36 @@ function AddOffice() {
   const [location, setLocation] = useState('');
   const [selectedMinistry, setSelectedMinistry] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('New Office Details:', { officeName, location, selectedMinistry });
-    // Future: Send to backend or update state
-    setOfficeName('');
-    setLocation('');
-    setSelectedMinistry('');
+
+    try {
+      const response = await fetch('http://localhost:2000/offices', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          officeName,
+          location,
+          ministryName: selectedMinistry
+        }),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log('Office added successfully:', result);
+        alert('Office added successfully!');
+        setOfficeName('');
+        setLocation('');
+        setSelectedMinistry('');
+      } else {
+        alert('Failed to add office. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error adding office:', error);
+      alert('An error occurred while adding the office.');
+    }
   };
 
   return (
