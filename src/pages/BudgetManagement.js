@@ -20,9 +20,8 @@ const BudgetManagement = () => {
     fetchMinistries();
   }, []);
 
-  const handleApprove = async (ministryName, amount) => {
+  const handleApprove = async (ministryName, amount, fiscalYear) => {
     try {
-      const fiscalYear = "2080/81";
       const response = await fetch('http://localhost:2000/budgets', {
         method: 'POST',
         headers: {
@@ -31,7 +30,7 @@ const BudgetManagement = () => {
         body: JSON.stringify({ ministryName, fiscalYear, allocated: amount }),
       });
       if (response.ok) {
-        const result = await response.json();
+        await response.json();
         alert(`Budget for ${ministryName} submitted successfully`);
       } else {
         alert('Failed to submit budget');
