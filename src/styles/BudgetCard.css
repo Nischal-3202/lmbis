@@ -46,3 +46,13 @@
 .approve-button:hover {
   background-color: #218838;
 }
+.fiscal-year-input {
+  margin-top: 8px;
+  margin-bottom: 12px;
+  padding: 6px;
+  border-radius: 4px;
+  width: 100%;
+  border: 1px solid #ccc;
+}
+
+
