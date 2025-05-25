@@ -12,7 +12,7 @@ const AdminSidebar = () => {
     { name: 'Budget Management', path: '/budget' },
     { name: 'Office', path: '/offices' },
     { name: 'Reports Page', path: '/reports' },
-    { name: 'Manage Ministries', path: '/ministries' },
+    { name: 'Manage Ministries', path: '/manage-ministries' },
   ];
 
   return (
