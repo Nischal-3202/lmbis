@@ -6,6 +6,7 @@ const AddProjects = () => {
   const [projectData, setProjectData] = useState({
     name: '',
     description: '',
+    budget: '', // added field
   });
 
   const handleChange = (e) => {
@@ -23,6 +24,7 @@ const AddProjects = () => {
         body: JSON.stringify({
           projectName: projectData.name,
           description: projectData.description,
+          allocatedBudget: parseFloat(projectData.budget), // optional: convert to number
           officeName: "Budget Health Office",
           ministryName: "Ministry of Health",
           fiscalYear: "2024-25"
@@ -59,6 +61,9 @@ const AddProjects = () => {
             </label>
             <label>Description:
               <input type="text" name="description" value={projectData.description} onChange={handleChange} />
+            </label>
+            <label>Set Budget:
+              <input type="number" name="budget" value={projectData.budget} onChange={handleChange} />
             </label>
           </div>
           <div className="add-button-section">
