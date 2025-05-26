@@ -60,15 +60,18 @@
 }
 
 .add-employee-button {
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  background-color: #0077cc;
+  background-color: #2D4E6A;
   color: white;
+  padding: 10px 24px;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 }
 
 .add-employee-button:hover {
-  background-color: #005fa3;
+  background-color: #1B365D;
 }
