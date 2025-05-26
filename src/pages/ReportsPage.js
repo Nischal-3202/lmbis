@@ -85,7 +85,7 @@ const ReportsPage = () => {
         <div className="report-cards-container">
           <ReportCard title="Fund Transfer" icon="📊" onClick={() => handleGenerateReport('Fund Transfer')} />
           <ReportCard title="Office Activity" icon="💰" onClick={() => handleGenerateReport('Office Activity')} />
-          <ReportCard title="Ministry Budget" icon="📋" onClick={() => handleGenerateReport('Ministry Budget')} />
+          <ReportCard title="Ministry Information" icon="📋" onClick={() => handleGenerateReport('Ministry Budget')} />
         </div>
 
         <div className="filters-section">
