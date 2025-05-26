@@ -40,6 +40,11 @@ const EmployeeInfo = () => {
             />
           ))}
         </div>
+        <div className="add-employee-button-container">
+          <button className="add-employee-button" onClick={() => window.location.href = '/office/employee-info/add'}>
+            + Add New Employee
+          </button>
+        </div>
       </main>
     </div>
   );

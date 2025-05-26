@@ -1,16 +1,25 @@
 
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import OfficeSidebar from '../components/OfficeSidebar';
 import ProjectCard from '../components/ProjectCard';
 import '../styles/ExpenditureTracker.css';
 
 const ExpenditureTracker = () => {
-  const projects = [
-    { name: 'Road Construction', description: 'Building new highways across the region.', budgetAllocated: '$500,000', remainingFunds: '$120,000' },
-    { name: 'School Renovation', description: 'Upgrading classrooms and facilities.', budgetAllocated: '$300,000', remainingFunds: '$75,000' },
-    { name: 'Healthcare Expansion', description: 'New clinics in rural areas.', budgetAllocated: '$700,000', remainingFunds: '$250,000' },
-  ];
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const res = await fetch('http://localhost:2000/projects/Budget%20Health%20Office');
+        const data = await res.json();
+        setProjects(data);
+      } catch (error) {
+        console.error('Failed to fetch projects:', error);
+      }
+    };
+    fetchProjects();
+  }, []);
 
   const handleEditProject = (projectName) => {
     console.log(`Editing project: ${projectName}`);
@@ -30,11 +39,11 @@ const ExpenditureTracker = () => {
           {projects.map((project, index) => (
             <ProjectCard
               key={index}
-              name={project.name}
+              name={project.projectName}
               description={project.description}
-              budgetAllocated={project.budgetAllocated}
-              remainingFunds={project.remainingFunds}
-              onEdit={() => handleEditProject(project.name)}
+              budgetAllocated={`₹${project.budgetAllocated?.toLocaleString?.() ?? project.budgetAllocated}`}
+              remainingFunds={`₹${project.budgetRemaining?.toLocaleString?.() ?? project.budgetRemaining}`}
+              onEdit={() => handleEditProject(project.projectName)}
             />
           ))}
         </div>

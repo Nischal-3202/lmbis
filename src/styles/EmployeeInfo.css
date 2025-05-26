@@ -52,3 +52,23 @@
   flex-direction: column;
   gap: 20px;
 }
+
+.add-employee-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.add-employee-button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.add-employee-button:hover {
+  background-color: #005fa3;
+}
