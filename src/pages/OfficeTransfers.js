@@ -1,34 +1,27 @@
-
-
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import OfficeSidebar from '../components/OfficeSidebar';
 import TransferCard from '../components/TransferCard';
 import '../styles/OfficeTransfers.css';
 
 const OfficeTransfers = () => {
-  const sampleTransfers = [
-    {
-      heading: 'Expenditure Transfer',
-      id: 'TXN123',
-      officeName: 'Finance Office',
-      amount: 50000,
-      date: '2024-05-15',
-    },
-    {
-      heading: 'Approved Request Transfer',
-      id: 'TXN124',
-      officeName: 'Education Office',
-      amount: 75000,
-      date: '2024-05-16',
-    },
-    {
-      heading: 'Infrastructure Fund',
-      id: 'TXN125',
-      officeName: 'Construction Office',
-      amount: 60000,
-      date: '2024-05-17',
-    },
-  ];
+  const [transfers, setTransfers] = useState([]);
+
+  useEffect(() => {
+    const fetchTransfers = async () => {
+      try {
+        const response = await fetch('http://localhost:2000/funds');
+        const data = await response.json();
+        const approvedTransfers = data.filter(
+          item => item.status === 'approved' && item.officeName === 'Budget Health Office'
+        );
+        setTransfers(approvedTransfers);
+      } catch (error) {
+        console.error('Error fetching fund transfers:', error);
+      }
+    };
+
+    fetchTransfers();
+  }, []);
 
   return (
     <div className="office-dashboard">
@@ -41,7 +34,7 @@ const OfficeTransfers = () => {
           </button>
         </header>
         <div className="transfers-container">
-          {sampleTransfers.map((transfer, index) => (
+          {transfers.map((transfer, index) => (
             <TransferCard key={index} transfer={transfer} />
           ))}
         </div>

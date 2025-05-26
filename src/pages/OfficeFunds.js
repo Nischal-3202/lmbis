@@ -15,9 +15,38 @@ const OfficeFunds = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form Submitted:', formData);
+    try {
+      const response = await fetch('http://localhost:2000/funds', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          amount: Number(formData.amount),
+          officeName: 'Budget Health Office',
+          ministryName: 'Ministry of Health',
+        }),
+      });
+
+      if (response.ok) {
+        alert('Fund request submitted successfully!');
+        setFormData({
+          title: '',
+          description: '',
+          project: '',
+          amount: '',
+          fiscalYear: '',
+        });
+      } else {
+        alert('Failed to submit fund request.');
+      }
+    } catch (error) {
+      console.error('Error submitting fund request:', error);
+      alert('An error occurred while submitting the fund request.');
+    }
   };
 
   return (
@@ -53,8 +82,8 @@ const OfficeFunds = () => {
               Fiscal Year:
               <select name="fiscalYear" value={formData.fiscalYear} onChange={handleChange} required>
                 <option value="">Select Year</option>
-                <option value="2023-2024">2023-2024</option>
-                <option value="2024-2025">2024-2025</option>
+                <option value="2023-24">2023-2024</option>
+                <option value="2024-25">2024-2025</option>
               </select>
             </label>
             <button type="submit">Submit</button>

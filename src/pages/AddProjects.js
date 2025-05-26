@@ -13,9 +13,32 @@ const AddProjects = () => {
     setProjectData({ ...projectData, [name]: value });
   };
 
-  const handleAdd = () => {
-    console.log('Adding new project:', projectData);
-    window.location.href = '/office/expenditure';
+  const handleAdd = async () => {
+    try {
+      const response = await fetch('http://localhost:2000/projects', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          projectName: projectData.name,
+          description: projectData.description,
+          officeName: "Budget Health Office",
+          ministryName: "Ministry of Health",
+          fiscalYear: "2024-25"
+        }),
+      });
+
+      if (response.ok) {
+        alert('Project added successfully!');
+        window.location.href = '/office/expenditure';
+      } else {
+        alert('Failed to add project.');
+      }
+    } catch (error) {
+      console.error('Error adding project:', error);
+      alert('An error occurred while adding the project.');
+    }
   };
 
   return (

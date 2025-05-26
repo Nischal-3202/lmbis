@@ -11,7 +11,6 @@ const PendingRequests = () => {
       try {
         const response = await fetch('http://localhost:2000/funds');
         const data = await response.json();
-        // setRequests(data);
         const pendingOnly = data.filter(req => req.status === 'pending');
         setRequests(pendingOnly);
       } catch (error) {
