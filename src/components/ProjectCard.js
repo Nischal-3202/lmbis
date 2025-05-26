@@ -12,12 +12,6 @@ const ProjectCard = ({ name, description, budgetAllocated, remainingFunds, onEdi
         <p><strong>Budget Allocated:</strong> {budgetAllocated}</p>
       </div>
       <div className="project-card-actions">
-        <button
-          className="edit-project-button"
-          onClick={() => window.location.href = `/office/expenditure/edit/${name}`}
-        >
-          Edit Project
-        </button>
         <button className="remaining-funds-button">
           Remaining Funds: {remainingFunds}
         </button>

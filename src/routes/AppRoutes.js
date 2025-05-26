@@ -19,7 +19,6 @@ import OfficeInfo from '../pages/OfficeInfo';
 import EmployeeInfo from '../pages/EmployeeInfo';
 import EditEmployee from '../pages/EditEmployee';
 import ExpenditureTracker from '../pages/ExpenditureTracker';
-import EditProject from '../pages/EditProject';
 import AddProjects from '../pages/AddProjects';
 
 const AppRoutes = () => {
@@ -36,7 +35,6 @@ const AppRoutes = () => {
       <Route path="/office/employee-info" element={<EmployeeInfo />} />
       <Route path="/office/employee-info/edit/:id" element={<EditEmployee />} />
       <Route path="/office/expenditure" element={<ExpenditureTracker />} />
-      <Route path="/office/expenditure/edit/:id" element={<EditProject />} />
       <Route path="/office/expenditure/add" element={<AddProjects />} />
       <Route path="/pending-requests" element={<PendingRequests />} />
       <Route path="/fund-transfers" element={<FundTransfers />} />
