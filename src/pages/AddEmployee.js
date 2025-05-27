@@ -8,7 +8,8 @@ const AddEmployee = () => {
     designation: '',
     level: '',
     contact: '',
-    dob: ''
+    dob: '',
+    employeeId: ''
   });
 
   const handleChange = (e) => {
@@ -18,12 +19,14 @@ const AddEmployee = () => {
 
   const handleAdd = async () => {
     try {
+      console.log('Sending employee data:', employeeData);
       const response = await fetch('http://localhost:2000/employees', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: employeeData.name,
           designation: employeeData.designation,
+          employeeId: employeeData.employeeId,
           level: employeeData.level,
           contact: employeeData.contact,
           dob: employeeData.dob,
@@ -61,6 +64,9 @@ const AddEmployee = () => {
             </label>
             <label>Designation:
               <input type="text" name="designation" value={employeeData.designation} onChange={handleChange} />
+            </label>
+            <label>Employee ID:
+              <input type="text" name="employeeId" value={employeeData.employeeId} onChange={handleChange} />
             </label>
             <label>Level:
               <input type="text" name="level" value={employeeData.level} onChange={handleChange} />

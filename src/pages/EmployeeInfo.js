@@ -1,18 +1,24 @@
-
-
-
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import OfficeSidebar from '../components/OfficeSidebar';
 import EmployeeCard from '../components/EmployeeCard';
 import '../styles/EmployeeInfo.css';
 
 const EmployeeInfo = () => {
-  const employees = [
-    { name: 'John Doe', designation: 'Manager', employeeId: 'EMP001', level: 'Senior' },
-    { name: 'Jane Smith', designation: 'Accountant', employeeId: 'EMP002', level: 'Mid' },
-    { name: 'Alice Johnson', designation: 'Analyst', employeeId: 'EMP003', level: 'Junior' },
-    { name: 'Michael Brown', designation: 'Clerk', employeeId: 'EMP004', level: 'Entry' },
-  ];
+  const [employees, setEmployees] = useState([]);
+
+  useEffect(() => {
+    const fetchEmployees = async () => {
+      try {
+        const response = await fetch('http://localhost:2000/employees/Budget%20Health%20Office');
+        const data = await response.json();
+        setEmployees(data);
+      } catch (error) {
+        console.error('Error fetching employees:', error);
+      }
+    };
+
+    fetchEmployees();
+  }, []);
 
   const handleEdit = (id) => {
     window.location.href = `/office/employee-info/edit/${id}`;
@@ -28,18 +34,25 @@ const EmployeeInfo = () => {
             &larr; Back to Office Info
           </button>
         </header>
+
         <div className="employee-cards-container">
-          {employees.map((emp) => (
-            <EmployeeCard
-              key={emp.employeeId}
-              name={emp.name}
-              designation={emp.designation}
-              employeeId={emp.employeeId}
-              level={emp.level}
-              onEdit={() => handleEdit(emp.employeeId)}
-            />
-          ))}
+          {employees.length > 0 ? (
+            employees.map((emp) => (
+              <EmployeeCard
+                key={emp.id}
+                id={emp.id}
+                name={emp.name || 'Unnamed'}
+                designation={emp.designation || 'Not specified'}
+                employeeId={emp.employeeId || 'N/A'}
+                level={emp.level || 'N/A'}
+                onEdit={() => handleEdit(emp.id)}
+              />
+            ))
+          ) : (
+            <p style={{ textAlign: 'center' }}>No employees found.</p>
+          )}
         </div>
+
         <div className="add-employee-button-container">
           <button className="add-employee-button" onClick={() => window.location.href = '/office/employee-info/add'}>
             + Add New Employee
