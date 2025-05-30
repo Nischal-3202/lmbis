@@ -36,6 +36,18 @@ const AddProjects = () => {
       });
 
       if (response.ok) {
+        // Trigger fund reduction
+        await fetch('http://localhost:2000/fundreduction', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            officeName: 'Budget Health Office',
+            ministryName: 'Ministry of Health',
+            fiscalYear: '2024-25',
+            amount: parsedBudget
+          })
+        });
+
         alert('Project added successfully!');
         window.location.href = '/office/expenditure';
       } else {

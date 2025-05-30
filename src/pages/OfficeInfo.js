@@ -5,13 +5,18 @@ import '../styles/OfficeInfo.css';
 
 const OfficeInfo = () => {
   const [officeData, setOfficeData] = useState(null);
+  const [employeeCount, setEmployeeCount] = useState(0);
 
   useEffect(() => {
     const fetchOfficeInfo = async () => {
       try {
-        const response = await fetch('http://localhost:2000/offices/name/Budget%20Health%20Office');
-        const data = await response.json();
-        setOfficeData(data);
+        const officeRes = await fetch('http://localhost:2000/offices/name/Budget%20Health%20Office');
+        const officeData = await officeRes.json();
+        setOfficeData(officeData);
+
+        const empRes = await fetch('http://localhost:2000/employees/count/Budget%20Health%20Office');
+        const empData = await empRes.json();
+        setEmployeeCount(empData.count || 0);
       } catch (error) {
         console.error('Error fetching office info:', error);
       }
@@ -35,7 +40,7 @@ const OfficeInfo = () => {
             ministryName={officeData.ministryName}
             officeName={officeData.officeName}
             location={officeData.location}
-            employeeCount={officeData.employees}
+            employeeCount={employeeCount}
             projectCount={officeData.projects}
           />
         )}
